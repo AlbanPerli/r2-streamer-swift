@@ -47,5 +47,18 @@ class SpineItemViewController: UIViewController, WKNavigationDelegate {
     func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         NSLog("webView didFailLoadWithError \(error)")
     }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        webView.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        
+        //TODO: reload or manage content f(orientation)
+        if UIDevice.current.orientation.isLandscape {
+            
+        } else {
+            
+        }
+    }
+    
 }
 
