@@ -24,6 +24,7 @@
 		59B27E961E01EE90002EE2FE /* RDPublication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B27E921E01EE90002EE2FE /* RDPublication.swift */; };
 		59B27E971E01EE90002EE2FE /* RDEpubParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B27E941E01EE90002EE2FE /* RDEpubParser.swift */; };
 		59B27E9A1E01F0E3002EE2FE /* AEXML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59B27E991E01F0E3002EE2FE /* AEXML.framework */; };
+		B56F1A681E1EFA2B0092B2F9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B56F1A671E1EFA2B0092B2F9 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		59B27E921E01EE90002EE2FE /* RDPublication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDPublication.swift; sourceTree = "<group>"; };
 		59B27E941E01EE90002EE2FE /* RDEpubParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDEpubParser.swift; sourceTree = "<group>"; };
 		59B27E991E01F0E3002EE2FE /* AEXML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AEXML.framework; path = Carthage/Build/iOS/AEXML.framework; sourceTree = "<group>"; };
+		B56F1A671E1EFA2B0092B2F9 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B56F1A681E1EFA2B0092B2F9 /* WebKit.framework in Frameworks */,
 				5962E8C11E0B28810045D1EF /* GCDWebServers.framework in Frameworks */,
 				596397821E09DDD6005A7147 /* ObjectMapper.framework in Frameworks */,
 				59B27E9A1E01F0E3002EE2FE /* AEXML.framework in Frameworks */,
@@ -169,6 +172,7 @@
 		59B27E981E01F0E3002EE2FE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B56F1A671E1EFA2B0092B2F9 /* WebKit.framework */,
 				5962E8C01E0B28810045D1EF /* GCDWebServers.framework */,
 				596397811E09DDD6005A7147 /* ObjectMapper.framework */,
 				59B27E991E01F0E3002EE2FE /* AEXML.framework */,
@@ -227,6 +231,7 @@
 				TargetAttributes = {
 					59B27E6C1E01E8F5002EE2FE = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = G739VH73FZ;
 						ProvisioningStyle = Automatic;
 					};
 					59B27E801E01E8F5002EE2FE = {
@@ -449,6 +454,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = G739VH73FZ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -465,6 +471,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = G739VH73FZ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",

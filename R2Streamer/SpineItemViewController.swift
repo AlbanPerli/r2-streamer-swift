@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import WebKit
 
-class SpineItemViewController: UIViewController, UIWebViewDelegate {
+class SpineItemViewController: UIViewController, WKNavigationDelegate {
     
-    var webView: UIWebView?
+    var webView: WKWebView = WKWebView()
     var spineItemURL: URL?
     
     init(spineItemURL: URL) {
@@ -26,16 +27,16 @@ class SpineItemViewController: UIViewController, UIWebViewDelegate {
     override func loadView() {
         super.loadView()
         
-        webView = UIWebView(frame: view.bounds)
-        webView?.delegate = self
-        view.addSubview(webView!)
+        webView.frame = view.bounds
+        webView.navigationDelegate = self
+        view.addSubview(webView)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         NSLog("webView loading \(spineItemURL)")
-        webView?.loadRequest(URLRequest(url: spineItemURL!))
+        webView.load(URLRequest(url: spineItemURL!))
     }
 
     override func didReceiveMemoryWarning() {
