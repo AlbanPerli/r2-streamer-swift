@@ -9,9 +9,9 @@
 import UIKit
 import WebKit
 
-class SpineItemViewController: UIViewController, WKNavigationDelegate {
+class SpineItemViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
     
-    var webView: WKWebView = WKWebView()
+    var webView: WKWebView!
     var spineItemURL: URL?
     
     init(spineItemURL: URL) {
@@ -27,8 +27,11 @@ class SpineItemViewController: UIViewController, WKNavigationDelegate {
     override func loadView() {
         super.loadView()
         
-        webView.frame = view.bounds
+        let configutation = self.webViewConfig()
+        webView = WKWebView(frame: self.view.bounds, configuration: configutation)
         webView.navigationDelegate = self
+        webView.uiDelegate = self
+        
         view.addSubview(webView)
     }
 
@@ -37,6 +40,16 @@ class SpineItemViewController: UIViewController, WKNavigationDelegate {
         
         NSLog("webView loading \(spineItemURL)")
         webView.load(URLRequest(url: spineItemURL!))
+        
+        let rightBarBtn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.action, target: self, action: #selector(callJsMethod))
+        self.navigationItem.rightBarButtonItem = rightBarBtn
+    }
+    
+    func callJsMethod() {
+        webView.evaluateJavaScript("callJS()") { (value, err) in
+            print(value ?? "No value")
+            print(err ?? "No error")
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,6 +72,53 @@ class SpineItemViewController: UIViewController, WKNavigationDelegate {
             
         }
     }
+ 
     
+    
+    //MARK: WKWebView methods
+    
+    /**
+     
+        Get the default configuration for the html/js reader
+     
+        - Returns: WKWebViewConfiguration The default configuration
+     
+     */
+    func webViewConfig() -> WKWebViewConfiguration {
+        
+        let jsSource = "function callJS(){ alert(\"Injected JS is called! then catch by uidelegate to display a native alert\"); }"
+        
+        let script: WKUserScript = WKUserScript(source: jsSource, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+
+        let wkUController = WKUserContentController()
+        wkUController.addUserScript(script)
+        let wkWebConfig = WKWebViewConfiguration()
+        wkWebConfig.userContentController = wkUController
+        wkWebConfig.allowsInlineMediaPlayback = true
+        wkWebConfig.preferences.javaScriptEnabled = true
+        
+        if #available(iOS 10.0, *) {
+            wkWebConfig.ignoresViewportScaleLimits = true
+        } else {
+            // Fallback on earlier versions
+        }
+        return wkWebConfig
+    }
+    
+    func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String,
+                 initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+        
+        
+        let alertController = UIAlertController(title: message, message: nil,
+                                                preferredStyle: UIAlertControllerStyle.alert);
+        
+        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel) {
+            _ in completionHandler()}
+            
+        );
+        
+        self.present(alertController, animated: true, completion: {});
+    }
+
 }
 
